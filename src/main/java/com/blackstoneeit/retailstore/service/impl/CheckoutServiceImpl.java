@@ -1,5 +1,6 @@
 package com.blackstoneeit.retailstore.service.impl;
 
+import com.blackstoneeit.retailstore.annotation.Loggable;
 import com.blackstoneeit.retailstore.dto.CartDto;
 import com.blackstoneeit.retailstore.dto.OrderDto;
 import com.blackstoneeit.retailstore.entity.Cart;
@@ -25,6 +26,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     private final CartRepository cartRepository;
 
 
+    @Loggable
     @Transactional
     @Override
     public OrderDto checkout(CartDto cartDto) {
@@ -44,7 +46,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         order.setAfterDiscount(order.getTotal().subtract(order.getDiscount()));
 
-        return MapperUtil.map(order,OrderDto.class);
+        return MapperUtil.map(order, OrderDto.class);
     }
 
     private void calculateOrderDiscount(Cart cart, Order order) {
