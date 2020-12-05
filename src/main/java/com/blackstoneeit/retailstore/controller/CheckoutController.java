@@ -3,7 +3,6 @@ package com.blackstoneeit.retailstore.controller;
 import com.blackstoneeit.retailstore.dto.CartDto;
 import com.blackstoneeit.retailstore.dto.OrderDto;
 import com.blackstoneeit.retailstore.service.CheckoutService;
-import com.blackstoneeit.retailstore.util.MapperUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +20,6 @@ public class CheckoutController {
 
     @PostMapping
     public OrderDto checkout(@Valid @RequestBody final CartDto cart) {
-        return MapperUtil.map(checkoutService.checkout(cart), OrderDto.class);
+        return checkoutService.checkout(cart);
     }
 }
